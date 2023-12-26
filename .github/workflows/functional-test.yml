@@ -57,7 +57,6 @@ jobs:
         java-version: '17'
     - run: nohup adb logcat > logcat.log &
       name: Capture Logcat
-    - run: sdkmanager --list
     - uses: reactivecircus/android-emulator-runner@v2
       name: e2e_api${{ matrix.apiLevel }}
       with:
