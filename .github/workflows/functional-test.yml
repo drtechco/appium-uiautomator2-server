@@ -12,6 +12,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
+        - platformVersion: "13.0"
+          apiLevel: 33
+          emuTag: google_apis
         - platformVersion: "11.0"
           apiLevel: 30
           emuTag: google_apis
