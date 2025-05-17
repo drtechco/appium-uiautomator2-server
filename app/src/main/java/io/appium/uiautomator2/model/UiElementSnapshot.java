@@ -267,14 +267,18 @@ public class UiElementSnapshot extends UiElement<AccessibilityNodeInfo, UiElemen
     }
 
     private void addToastMsg(CharSequence tokenMSG) {
-        AccessibilityNodeInfo node = AccessibilityNodeInfo.obtain();
-        node.setText(tokenMSG);
-        node.setClassName(Toast.class.getName());
-        node.setPackageName("com.android.settings");
-        node.setVisibleToUser(true);
-        setField("mSealed", true, node);
-        this.children.add(new UiElementSnapshot(node, this.children.size(), 0,
-                new HashSet<>(Arrays.asList(TOAST_NODE_ATTRIBUTES))));
+        try {
+            AccessibilityNodeInfo node = AccessibilityNodeInfo.obtain();
+            node.setText(tokenMSG);
+            node.setClassName(Toast.class.getName());
+            node.setPackageName("com.android.settings");
+            node.setVisibleToUser(true);
+            setField("mSealed", true, node);
+            this.children.add(new UiElementSnapshot(node, this.children.size(), 0,
+                                                    new HashSet<>(Arrays.asList(TOAST_NODE_ATTRIBUTES))));
+        } catch (Exception e) {
+            Logger.error("Failed to add toast message to root", e);
+        }
     }
 
     private List<UiElementSnapshot> buildChildren(AccessibilityNodeInfo node) {

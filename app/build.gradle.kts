@@ -190,7 +190,7 @@ val installAUT by tasks.register("installAUT", Exec::class) {
         }
         val apiLevel : Int = runCatching {
             val getPropCommand = mutableListOf<String>()
-            getPropCommand.addFirst(adbFileProvider.get().asFile.absolutePath)
+            getPropCommand.add(adbFileProvider.get().asFile.absolutePath)
             getPropCommand.addAll(commandArgs)
             getPropCommand.addAll(listOf("shell","getprop","ro.build.version.sdk"))
             ProcessBuilder( getPropCommand)
@@ -203,7 +203,7 @@ val installAUT by tasks.register("installAUT", Exec::class) {
             commandArgs.add("-g")
         }
         commandArgs.add("-r")
-        commandArgs.addLast(apkFile.absolutePath)
+        commandArgs.add(apkFile.absolutePath)
         setArgs(commandArgs)
         isIgnoreExitValue = false
         errorOutput = ByteArrayOutputStream()
@@ -214,6 +214,7 @@ val installAUT by tasks.register("installAUT", Exec::class) {
         logger.info("exitValue: ${executionResult.get().exitValue},\nstandardOutput: $standardOutput,\nerrorOutput: $errorOutput")
     }
 }
+
 val uninstallAUT by tasks.register("uninstallAUT", Exec::class) {
     group = "install"
     description = "Uninstall app under test (ApiDemos) using AGP's ADB."
