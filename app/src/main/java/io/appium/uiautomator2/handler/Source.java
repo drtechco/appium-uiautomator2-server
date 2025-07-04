@@ -20,9 +20,16 @@ import io.appium.uiautomator2.core.AccessibilityNodeInfoDumper;
 import io.appium.uiautomator2.handler.request.SafeRequestHandler;
 import io.appium.uiautomator2.http.AppiumResponse;
 import io.appium.uiautomator2.http.IHttpRequest;
+import io.appium.uiautomator2.model.api.SessionModel;
+import io.appium.uiautomator2.model.api.SourceModel;
+import io.appium.uiautomator2.utils.Attribute;
 
 import static io.appium.uiautomator2.utils.AXWindowHelpers.refreshAccessibilityCache;
 import static io.appium.uiautomator2.utils.Attribute.xmlExposableAttributes;
+import static io.appium.uiautomator2.utils.ModelUtils.toModel;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Get page source. Return as string of XML doc
@@ -34,8 +41,8 @@ public class Source extends SafeRequestHandler {
 
     @Override
     protected AppiumResponse safeHandle(IHttpRequest request) {
-        refreshAccessibilityCache();
-        String xmlSource = new AccessibilityNodeInfoDumper(null, xmlExposableAttributes()).dumpToXml();
+
+        String xmlSource = new AccessibilityNodeInfoDumper(null,xmlExposableAttributes()).dumpToXml();
         return new AppiumResponse(getSessionId(request), xmlSource);
     }
 }

@@ -94,6 +94,11 @@ public enum Attribute {
         return aliases[0];
     }
 
+    public String[] getAliases(){
+        return aliases;
+    }
+
+
     public boolean isExposableToXml() {
         return isExposableToXml;
     }

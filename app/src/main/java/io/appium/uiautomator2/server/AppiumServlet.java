@@ -29,6 +29,7 @@ import io.appium.uiautomator2.handler.AcceptAlert;
 import io.appium.uiautomator2.handler.CaptureScreenshot;
 import io.appium.uiautomator2.handler.Clear;
 import io.appium.uiautomator2.handler.Click;
+import io.appium.uiautomator2.handler.ComplexSource;
 import io.appium.uiautomator2.handler.DeleteSession;
 import io.appium.uiautomator2.handler.DismissAlert;
 import io.appium.uiautomator2.handler.ActiveElement;
@@ -147,6 +148,7 @@ public class AppiumServlet implements IHttpServlet {
         register(postHandler, new ScheduleAction("/session/:sessionId/appium/schedule_action"));
         register(postHandler, new GetActionHistory("/session/:sessionId/appium/action_history"));
         register(postHandler, new UnscheduleAction("/session/:sessionId/appium/unschedule_action"));
+        register(postHandler, new ComplexSource("/session/:sessionId/complex_source"));
     }
 
     private void registerGetHandler() {
